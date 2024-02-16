@@ -10,7 +10,8 @@ class Main(customtkinter.CTk):
         super().__init__()
 
         self.geometry("450x650")
-        # self.minsize(450, 650)
+        self.minsize(450, 650)
+        self.maxsize(450, 650)
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 

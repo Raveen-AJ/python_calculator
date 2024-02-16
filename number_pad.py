@@ -1,11 +1,10 @@
 import customtkinter
 
-
 number_pad_grid = [["AC", "()", "%", "/"],
                    ["7", "8", "9", "*"],
                    ["4", "5", "6", "-"],
                    ["1", "2", "3", "+"],
-                   ["0", ".", "X", "="]]
+                   ["0", ".", "DEL", "="]]
 
 
 class NumberPad(customtkinter.CTkFrame):
