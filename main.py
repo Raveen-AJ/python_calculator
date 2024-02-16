@@ -1,4 +1,5 @@
 import customtkinter
+
 from calculator import Calculator
 
 customtkinter.set_appearance_mode("dark")
@@ -8,7 +9,7 @@ customtkinter.set_default_color_theme("dark-blue")
 class Main(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-
+        self.title("Calculator")
         self.geometry("450x650")
         self.minsize(450, 650)
         self.maxsize(450, 650)

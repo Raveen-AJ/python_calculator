@@ -23,6 +23,6 @@ class NumberPad(customtkinter.CTkFrame):
 class Button(customtkinter.CTkButton):
     def __init__(self, number_pad, row, col, text, color="gray", callback=None):
         super().__init__(master=number_pad)
-        self.configure(text=text, fg_color=color)
+        self.configure(text=text, fg_color=color, font=("Arial", 36, "bold"))
         self.grid(row=row, column=col, padx=1, pady=1, sticky="nsew")
-        self.configure(command=lambda: callback(text))
+        self.configure(command=lambda: callback(text), fg_color="#14374e")

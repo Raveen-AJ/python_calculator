@@ -10,14 +10,14 @@ class Display(customtkinter.CTkFrame):
             self,
             text="",
             height=height // 2,
-            font=("Arial", 42),
+            font=("Arial", 63),
             anchor="e"
         )
         self.label_row2 = customtkinter.CTkLabel(
             self,
             text="",
             height=height // 2,
-            font=("Arial", 42),
+            font=("Arial", 63),
             anchor="e"
         )
         self.label_row1.grid(row=1, column=0, sticky="se")

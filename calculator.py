@@ -1,5 +1,7 @@
-import customtkinter
 import re
+
+import customtkinter
+
 from display import Display
 from number_pad import NumberPad
 from utils import is_operator
@@ -96,7 +98,7 @@ class Calculator(customtkinter.CTkFrame):
                 return
             if self.expression[-1] == ".":
                 raise SyntaxError()
-            self.display.set_row1(str(eval(self.expression)))
+            self.display.set_row1(str(eval(self.expression))[:12])
             self.display.set_row2(self.expression)
             self.expression = ""
         except SyntaxError:
