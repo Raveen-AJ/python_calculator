@@ -1,10 +1,8 @@
-import re
-
 import customtkinter
 
 from display import Display
 from number_pad import NumberPad
-from utils import is_operator
+from utils import is_operator, get_sections, remove_leading_zeros
 
 
 class Calculator(customtkinter.CTkFrame):
@@ -32,6 +30,7 @@ class Calculator(customtkinter.CTkFrame):
             self._clear_display()
 
         if btn == "()":
+            # TODO
             return
         if btn == "AC":
             self._clear_display()
@@ -66,6 +65,9 @@ class Calculator(customtkinter.CTkFrame):
         self._update(self.expression[:-1])
 
     def _on_click_operator(self, operator):
+        if self.expression == "" and operator == "-":
+            self._update("-")
+            return
         if self.expression == "" or self.expression[-1] == ".":
             return
         expression_last_char = self.expression[-1]
@@ -79,17 +81,14 @@ class Calculator(customtkinter.CTkFrame):
 
     def _on_click_dot(self):
         if self.expression == "":
+            self._update("0.")
             return
-        last_value = re.split(r'[+\-*/%]', self.expression)[-1]
+        last_value = get_sections(self.expression)[-1]
         if last_value == "" or "." in last_value:
             return
         self._update(self.expression + ".")
 
     def _on_click_number(self, num):
-        if num == "0":
-            last_value = re.split(r'[+\-*/%]', self.expression)[-1]
-            if last_value == "":
-                return
         self._update(self.expression + num)
 
     def _calculate(self):
@@ -98,7 +97,8 @@ class Calculator(customtkinter.CTkFrame):
                 return
             if self.expression[-1] == ".":
                 raise SyntaxError()
-            self.display.set_row1(str(eval(self.expression))[:12])
+            formatted_expression = remove_leading_zeros(self.expression)
+            self.display.set_row1(str(eval(formatted_expression))[:12])
             self.display.set_row2(self.expression)
             self.expression = ""
         except SyntaxError:
